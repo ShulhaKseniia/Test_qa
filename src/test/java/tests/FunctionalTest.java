@@ -10,15 +10,11 @@ import pages.TranslateElements;
 import java.util.Arrays;
 import java.util.Collection;
 
-@RunWith(Parameterized.class)
-public class FunctionalTest extends Base {
-    private String sourceValue;
-    private String expected;
 
-    public FunctionalTest(String sourceValue, String expected) {
-        this.sourceValue = sourceValue;
-        this.expected = expected;
-    }
+public class FunctionalTest extends Base {
+
+
+
 
     //проверка отображения блока с определением данных, которые хотят переводить
     @Test
@@ -141,32 +137,21 @@ public class FunctionalTest extends Base {
         Assert.assertEquals("test", helper.getValue(translateElements.resultArea));
     }
 
-    @Test
-    public void maxTextTranslateTest() {
-        helper.inputValue(translateElements.text, translateElements.sourceArea);
-        Assert.assertEquals("Максимальное количество символов: 5000", helper.getValue(translateElements.warning));
-    }
+//    @Test
+//    public void maxTextTranslateTest() {
+//        helper.inputValue(translateElements.text, translateElements.sourceArea);
+//        Assert.assertEquals("Максимальное количество символов: 5000", helper.getValue(translateElements.warning));
+//    }
 
     @Test
     public void overTextTranslateTest() throws InterruptedException {
         helper.inputValue(translateElements.text, translateElements.sourceArea);
+        Assert.assertEquals("Максимальное количество символов: 5000", helper.getValue(translateElements.warning));
         Assert.assertEquals("ПЕРЕВЕСТИ ЕЩЕ 5000", helper.getValue(translateElements.overText));
     }
 
-    @Test
-    public void dataTest() {
-        helper.inputValue(sourceValue,translateElements.sourceArea);
-        Assert.assertEquals(expected, helper.getValue(TranslateElements.resultArea));
-    }
 
-    @Parameterized.Parameters(name = "Inputs: sourceValue ={0}; expected = {1}")
-    public static Collection<Object[]> dataProvider() {
-        return Arrays.asList(new Object[][]{
-                {"1 + 5", "1 + 5"},
-                {"!@#$%^&*()_+","!@#$%^&*()_+"},
-                {"        .","."},
-        });
-    }
+
 
  }
 
