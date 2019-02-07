@@ -32,7 +32,6 @@ public class SmokeTest extends Base {
         helper.inputValue("Мовлення як вид людської діяльності завжди зорієнтоване на виконання певного комунікативного завдання",translateElements.sourceArea);
         translateElements.sourceArea.sendKeys(Keys.RETURN);
         helper.wait(translateElements.resultArea);
-
     }
 
 

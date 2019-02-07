@@ -17,6 +17,12 @@ public class ElementsActivityTest extends Base{
     }
 
     @Test
+    public void countSymbolsTest() {
+        helper.inputValue("тест",translateElements.sourceArea);
+        Assert.assertEquals("4/5000", helper.getValue(translateElements.countSymbol));
+    }
+
+    @Test
     public void additionalPosibilitiesTest() {
         helper.click(translateElements.fromRuLang);
         helper.inputValue("тест",translateElements.sourceArea);
@@ -26,11 +32,10 @@ public class ElementsActivityTest extends Base{
 
     @Test
     public void listeningResultTranslatingTest() {
-            helper.inputValue("тест",translateElements.sourceArea);
-            translateElements.sourceArea.sendKeys(Keys.RETURN);
-            Assert.assertTrue(helper.isClicable(translateElements.listenTranslation));;
+        helper.inputValue("тест",translateElements.sourceArea);
+        translateElements.sourceArea.sendKeys(Keys.RETURN);
+        Assert.assertTrue(helper.isClicable(translateElements.listenTranslation));;
     }
-
 
     @Test
     public void historyRedirectTest ()  {
@@ -65,7 +70,7 @@ public class ElementsActivityTest extends Base{
         Assert.assertTrue(helper.isClicable(translateElements.chooseDownloadbutton));;
     }
 
-    }
+}
 
 
 

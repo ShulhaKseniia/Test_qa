@@ -2,13 +2,23 @@ package tests;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.Keys;
+import pages.TranslateElements;
 
 import java.util.Arrays;
 import java.util.Collection;
 
-public class RegressionTest extends Base {
+@RunWith(Parameterized.class)
+public class FunctionalTest extends Base {
+    private String sourceValue;
+    private String expected;
+
+    public FunctionalTest(String sourceValue, String expected) {
+        this.sourceValue = sourceValue;
+        this.expected = expected;
+    }
 
     //проверка отображения блока с определением данных, которые хотят переводить
     @Test
@@ -113,7 +123,7 @@ public class RegressionTest extends Base {
     @Test
     public void En_Ru_TranslateTest() throws InterruptedException {
         helper.click(translateElements.fromEnLang);
-     //   helper.click(translateElements.toRuLang);
+        //   helper.click(translateElements.toRuLang);
         helper.inputValue("test", translateElements.sourceArea);
         translateElements.sourceArea.sendKeys(Keys.RETURN);
         helper.wait(translateElements.resultArea);
@@ -131,10 +141,32 @@ public class RegressionTest extends Base {
         Assert.assertEquals("test", helper.getValue(translateElements.resultArea));
     }
 
+    @Test
+    public void maxTextTranslateTest() {
+        helper.inputValue(translateElements.text, translateElements.sourceArea);
+        Assert.assertEquals("Максимальное количество символов: 5000", helper.getValue(translateElements.warning));
+    }
 
+    @Test
+    public void overTextTranslateTest() throws InterruptedException {
+        helper.inputValue(translateElements.text, translateElements.sourceArea);
+        Assert.assertEquals("ПЕРЕВЕСТИ ЕЩЕ 5000", helper.getValue(translateElements.overText));
+    }
 
+    @Test
+    public void dataTranslateTest() {
+        helper.inputValue(sourceValue,translateElements.sourceArea);
+        Assert.assertEquals(expected, helper.getValue(TranslateElements.resultArea));
+    }
 
-
+    @Parameterized.Parameters(name = "Inputs: sourceValue ={0}; expected = {1}")
+    public static Collection<Object[]> dataProvider() {
+        return Arrays.asList(new Object[][]{
+                {"1 + 5", "1 + 5"},
+                {"!@#$%^&*()_+","!@#$%^&*()_+"},
+                {"        .","."},
+        });
+    }
 
  }
 
