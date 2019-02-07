@@ -154,7 +154,7 @@ public class FunctionalTest extends Base {
     }
 
     @Test
-    public void dataTranslateTest() {
+    public void dataTest() {
         helper.inputValue(sourceValue,translateElements.sourceArea);
         Assert.assertEquals(expected, helper.getValue(TranslateElements.resultArea));
     }
