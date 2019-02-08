@@ -63,7 +63,7 @@ public class TranslateElements extends Base{
     @FindBy(xpath = "/html/body/div[2]/div[1]/div[2]/div[3]/a")
     public static WebElement sendFeedback;
 
-    @FindBy(xpath = "/html/body/div[2]/div/div/uf-describe-page/form/label/div/div")
+    @FindBy(xpath = "/html/body/div[2]/div/div/uf-describe-page/form/header/div[2]/label/button/svg")
     public static WebElement feedbackFormElement;
 
     @FindBy(xpath = "/html/body/div[2]/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[1]/div[4]/div[5]/div")

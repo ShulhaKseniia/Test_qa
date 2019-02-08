@@ -19,6 +19,7 @@ public class DataTest extends Base{
         this.result = result;
     }
 
+    //Проверка возможности работы с разными данными
     @Test
     public void dataTest() {
         helper.inputValue(sourceValue,translateElements.sourceArea);

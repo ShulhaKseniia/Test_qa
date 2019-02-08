@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class ElementsActivityTest extends Base{
 
+    //Тесты работоспособности элементов на странице
     @Test
     public void cleaningFieldTest() {
         helper.inputValue("очистка",translateElements.sourceArea);
@@ -58,8 +59,7 @@ public class ElementsActivityTest extends Base{
 
     @Test
     public void feedbackRedirectTest() throws InterruptedException {
-        helper.click(translateElements.sendFeedback);
-        //Assert.assertEquals("Опишіть свою проблему або поділіться ідеями", helper.getValue(translateElements.feedbackFormElement));
+        Assert.assertTrue(helper.isClicable(translateElements.sendFeedback));;
     }
 
     @Test

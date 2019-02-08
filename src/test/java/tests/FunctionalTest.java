@@ -117,9 +117,8 @@ public class FunctionalTest extends Base {
 
     //Проверка перевода Английский -> Русский
     @Test
-    public void En_Ru_TranslateTest() throws InterruptedException {
+    public void En_Ru_TranslateTest() {
         helper.click(translateElements.fromEnLang);
-        //   helper.click(translateElements.toRuLang);
         helper.inputValue("test", translateElements.sourceArea);
         translateElements.sourceArea.sendKeys(Keys.RETURN);
         helper.wait(translateElements.resultArea);
@@ -137,17 +136,12 @@ public class FunctionalTest extends Base {
         Assert.assertEquals("test", helper.getValue(translateElements.resultArea));
     }
 
-//    @Test
-//    public void maxTextTranslateTest() {
-//        helper.inputValue(translateElements.text, translateElements.sourceArea);
-//        Assert.assertEquals("Максимальное количество символов: 5000", helper.getValue(translateElements.warning));
-//    }
-
+    //Проверка работы формы со сл. большим текстом
     @Test
-    public void overTextTranslateTest() throws InterruptedException {
+    public void maxTextTranslateTest() throws InterruptedException {
         helper.inputValue(translateElements.text, translateElements.sourceArea);
         Assert.assertEquals("Максимальное количество символов: 5000", helper.getValue(translateElements.warning));
-        Assert.assertEquals("ПЕРЕВЕСТИ ЕЩЕ 5000", helper.getValue(translateElements.overText));
+        Assert.assertEquals("ПЕРЕВЕСТИ ЕЩЁ 5000", helper.getValue(translateElements.overText));
     }
 
 
